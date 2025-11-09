@@ -16,6 +16,17 @@ def AI_insurance_assistance():
 
     user_input = st.chat_input("Ask your insurance-related question here...")
 
+    if user_input:
+        with st.chat_message("user"):
+            st.markdown(user_input)
+        st.session_state.messages.append({"role": "user", "content": user_input})
+
+        response = "Here is a placeholder response to your insurance question."
+
+        with st.chat_message("assistant"):
+            st.markdown(response)
+        st.session_state.messages.append({"role": "assistant", "content": response})
+
 
 if __name__ == "__main__":
     AI_insurance_assistance()
