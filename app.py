@@ -1,4 +1,14 @@
 import streamlit as st
+from dotenv import load_dotenv
+import os
+from prompt import OpenAIConfig
+
+load_dotenv()
+api_key = os.getenv("OPENAI_API_KEY")
+if not api_key:
+    st.error("Please check the OPENAI_API_KEY.")
+
+ai = OpenAIConfig(api_key=api_key)
 
 def AI_insurance_assistance():
     st.title("AI Insurance Assistance")
@@ -21,7 +31,7 @@ def AI_insurance_assistance():
             st.markdown(user_input)
         st.session_state.messages.append({"role": "user", "content": user_input})
 
-        response = "Here is a placeholder response to your insurance question."
+        response = ai.get_response(user_input, st.session_state.messages)
 
         with st.chat_message("assistant"):
             st.markdown(response)
