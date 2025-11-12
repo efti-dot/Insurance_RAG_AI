@@ -19,15 +19,15 @@ class OpenAIConfig:
         """
 
         response = openai.chat.completions.create(
-            model=self.model,
-            messages=history + [{"role": "user", "content": prompt}],
-            max_tokens=500,
-            temperature=0.7,
-        )
+        model=self.model,
+        messages=history + [{"role": "user", "content": prompt}],
+        max_tokens=500,
+        temperature=0.7,
+    )
 
-        # Accessing the response content correctly
-        reply = response['choices'][0]['message']['content']
+        reply = response.choices[0].message.content
         return reply
+
     
 
     def get_history(self):
